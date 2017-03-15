@@ -1,0 +1,17 @@
+
+
+/*mein erstes stylesheet*/
+
+body {
+	font-family: sans-serif;
+	text-align:center;
+
+figure {
+	border:2px solid black;
+}
+	
+h1,h2	{
+	text-align:center;
+	font-family:serif;
+	}
+p	{text-align:center}
