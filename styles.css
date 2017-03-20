@@ -1,4 +1,4 @@
-html { 
+body { 
   background: url(images/img1.jpg) no-repeat center center fixed; 
   background-size: cover;
   text-align: center;
@@ -120,8 +120,4 @@ p	{text-align:justify}
 .wichtig {
 	color:red;
 	font-weight:bold;
-}
-
-#abbildung1 {
-	background-color:lime;
 }
