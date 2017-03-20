@@ -1,5 +1,5 @@
 body { 
-  background: url("images/img1.JPG") no-repeat center center fixed; 
+  background: url(images/img1.JPG) no-repeat center center fixed; 
   background-color: lime;
   background-size: cover;
   text-align: center;
