@@ -1,5 +1,6 @@
 body { 
-  background: url(images/img1.jpg) no-repeat center center fixed; 
+  background: url(images/img.jpg) no-repeat center center fixed; 
+  background-color: lime;
   background-size: cover;
   text-align: center;
 }
@@ -79,7 +80,7 @@ a {
 
 .halfpageleft {
 	background-color: rgba(0, 0, 0, 0.3);
-	width: 40%;
+	width: 48%;
 	height: auto;
 	float: left;
 	border-radius: 5px;
@@ -89,7 +90,7 @@ a {
 
 .halfpageright {
 	background-color: rgba(0, 0, 0, 0.3);
-	width: 40%;
+	width: 48%;
 	height: auto;
 	float: right;
 	border-radius: 5px;
