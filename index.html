@@ -1,40 +1,86 @@
 <!DOCTYPE html>
-<html lang="de">
-
-	<head>
-		<meta charset="utf-8">
-		<title>My first html document</title>
-
-	<link type="text/css" rel="stylesheet" href="styles.css"></link>
-		
-	</head>
-	<body>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Neuseeland Reise - Etappe 10 (Lake Gunn)</title>
+    <link rel="stylesheet" href="../styles.css" />
 	
-		<div id="topimg"><img id="topimg" src="images/img_top.JPG" />
-			<nav>
-				<ul>
-					<li><a href='https://www.uibk.ac.at/geographie/blackboard/'>Geographie Aktuell</a></li>
-					<li><a href='https://www.codecademy.com/learn/web'>Codeacademy HTML Tutorial</a></li>
-					<li>Some text</li>
-				</ul>
-			</nav>			
-		</div>
-		
-		<div class="textbox">	
-			<h2 class="wichtig">This paragraph features some random text</h2>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
 	
-		<p class="wichtig"><em>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit 			amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam 		voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit 			amet.</em></p>
-		</div>
-		
-		<p>
-		<div class="halfpageleft">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit 			amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam 		voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit 			amet.</div>
-		<div class="halfpageright">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit 			amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam 		voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit 			amet.</div>
-		</p>
-		
-		
-		<div class="fussnote">Das ist meine zweite HTML Seite</div>
+	<style>
+	#overviewMap {
+            float: right;
+            width: 200px;
+            height: 200px;
+            border: 1px solid blue;
+    }
+	</style>
+</head>
+<body>
 
-	</body>
-
-
+	<h1>Lake Gunn</h1>
+	<h2>...ist bennant nach George Gunn, einem Farmer, der den See einst entdeckte.</h2>
+	<h3>Länge: 168° 5′ 0″ O; Breite: 44° 53′ 0″ S; Seehöhe: 480m</h3>
+		
+		<div id="overviewMap"></div>
+		
+		<p class="info">Der See wurde 1861 entdeckt. Man benannte ihn nach seinem Entdecker George Gunn.</p>
+		<p class="info">Der See befindet sich in der Region Southland auf der Südinsel Neuseelands. Er ist Teil des Fiordland-Nationalparks.</p>
+		
+		<figure>
+			<a href="http://photos.travellerspoint.com/478874/Key_Summit.jpg"><img src="img1.jpg"/></a>
+			<figcaption>Lake Gunn 1, <a href="http://photos.travellerspoint.com/478874/Key_Summit.jpg">Quelle</a></figcaption>
+		</figure>
+		
+		<figure>
+			<a href="http://a7cfd3bc12bde1fca2fa-554039d8591aaacb315c6dc932e84f2e.r38.cf5.rackcdn.com/lake-gunn-fiordland-national-park-new-zealand.jpg"><img src="img2.jpg"/></a>
+			<figcaption>Lake Gunn 2, <a href="http://a7cfd3bc12bde1fca2fa-554039d8591aaacb315c6dc932e84f2e.r38.cf5.rackcdn.com/lake-gunn-fiordland-national-park-new-zealand.jpg">Quelle</a></figcaption>
+		</figure>
+		
+		<h4>Links</h4>
+		
+			<ul>				
+				<li><a href="http://photos.travellerspoint.com/478874/Key_Summit.jpg">Link zu Image 1</a></li>
+				<li><a href="http://a7cfd3bc12bde1fca2fa-554039d8591aaacb315c6dc932e84f2e.r38.cf5.rackcdn.com/lake-gunn-fiordland-national-park-new-zealand.jpg">Link zu Image 2</a></li>
+				<li><a href="https://de.wikipedia.org/wiki/Lake_Gunn">Mehr Information auf Wikipedia</a></li>
+			</ul>
+			
+		<nav>
+			<a class="previous" href="../09/index.html">Previous Page</a>
+			<span class="current">Aktuelle Seite</span>
+			<a class="next" href="../11/index.html">Next Page</a>
+		</nav>
+		
+		<p class="author">Andreas Kollert</p>
+		
+		
+		
+	<script>
+		
+		var map = L.map('overviewMap');
+		map.setView([-44.88333,168.0833], 9);
+		
+		var osm = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
+		osm.addTo(map);
+		
+		var marker = L.marker([-44.88333,168.0833]);
+		marker.addTo(map);
+		
+		marker.bindPopup("<b>Lake Gunn</b>");
+		
+		map.panTo(marker.getLatLng());
+		
+		// center map around pop up
+		map.on('popupopen', function(e) {
+		var px = map.project(e.popup._latlng); // find the pixel location on the map where the popup anchor is
+		px.y -= e.popup._container.clientHeight/2 // find the height of the popup container, divide by 2, subtract from the Y axis of marker location
+		map.panTo(map.unproject(px),{animate: true}); // pan to new center
+		});
+	
+	
+	
+	</script>
+				
+</body>
 </html>
