@@ -1,0 +1,160 @@
+/*
+ * 
+ * Stylesheet für die Neuseeland Reise
+ * 
+ */
+ 
+ /* * {
+	 border: 1px solid black;
+ } */
+
+body {
+	background-color: #00667F;
+	font-family: Calibri, Arial, "sans-serif";
+	font-weight: 100;
+	margin: 0 auto;
+	max-width: 60em;
+	
+    
+}
+
+a:link, a:visited, a:hover {
+	color: rgba(255, 255, 255, 0.7);
+	text-decoration: none;
+}
+/*
+ * vorgegebene Stile der Angabe
+ */
+
+/* Titel */
+h1 {
+	background-color: rgba(255, 255, 255, 0.7);
+	text-align: center;
+	color: #00667F;
+	font-size: 50px;
+	text-transform: uppercase;
+	
+    
+}
+
+/* Untertitel "Teaser" */
+h2 {
+	text-align: left;
+	color: rgba(255, 255, 255, 0.7);
+	font-size: 30px;
+
+    
+}
+
+/* Untertitel Koordinaten / Höhe */
+h3 {
+	text-align: left;
+	font-style: italic;
+	color: rgba(255, 255, 255, 0.7);
+	font-size: 30px;
+
+	
+	
+    
+}
+
+/* Absatz mit Infotext */
+p.info {
+	clear: right;
+	background-color: rgba(255, 255, 255, 0.7);
+	color: #00667F;
+	font-size: 20px;
+	text-align: block;
+	padding: 0 10px;
+    
+}
+
+/* Bilder mit Bildunterschriften */
+figure {
+	display: block;
+	margin: auto; 
+	text-align: center;
+	
+    
+}
+figure img {
+    display: inline;
+	margin: 0; 
+	width: 80%;
+	
+}
+figure figcaption {
+    font-size: 15px;
+	text-align: center;
+	color: rgba(255, 255, 255, 0.7);
+    
+}
+
+/* Linkverzeichnis zu den Quellen */
+h4.links {
+	font-size: 20px;
+	color: rgba(255, 255, 255, 0.7);
+    
+}
+ul.links {
+	list-style: none;
+	font-size: 20px;
+	color: rgba(255, 255, 255, 0.7);
+    
+}
+ul.links li {
+	font-size: 20px;
+	color: rgba(255, 255, 255, 0.7);
+    
+}
+
+/* Routennavigation */
+nav {
+	display: block;
+	padding-left: 30px;
+	padding-right: 30px;
+	font-size: 15px;
+	font-style: bold;
+	color: rgba(255, 255, 255, 0.7);
+    
+}
+nav a.previous {
+	display: block;
+	font-style: bold;
+	text-align: center;
+	font-size: 20px;
+	font-weight: bold;
+	color: rgba(255, 255, 255, 0.7);
+    
+    
+}
+nav a.next {
+	display: block;
+	font-style: bold;
+	text-align: center;
+	font-size: 20px;
+	font-weight: bold;
+	color: rgba(255, 255, 255, 0.7);
+    
+    
+}
+nav span.current {
+	display: block;
+	text-align: center;
+	font-size: 30px;
+    padding: 5px 0px;
+	color: rgba(255, 255, 255, 0.7);
+    
+    
+}
+
+/* Autor */
+p.author {
+	background-color: rgba(255, 255, 255, 0.7);
+	color: #00667F;
+	font-size: 15px;
+	text-align: block;
+	padding: 0 10px;
+    
+}
+
