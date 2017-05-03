@@ -13,6 +13,7 @@
     <script src="citybike_punkte.json.js"></script>
     <script src="wanderwege_linien.json.js"></script>
 	<script src="maerkte_flaechen.json.js"></script>
+	<script src="my_geojson.js"></script>
 	<!-- DONE -- TODO: GeoJSON Datenskript für Märkte/Flächen einbinden - https://www.data.gv.at/suche/?search-term=wien+m%C3%A4rkte&searchIn=catalog -->
 
     <style>
@@ -130,7 +131,7 @@
 			allInfo += '<div>' + 'Adresse: ' + layer.feature.properties.ADRESSE + '</div>';
             allInfo += '<div>' + "<a href='" + layer.feature.properties.WEITERE_INF + "'>Weitere Informationen</a>" + '</div>';
 			return allInfo;
-        }).addTo(map);
+        });//.addTo(map);
 
         // GeoJSON Daten der Citybike Stationen laden und Popup erstellen
         var punkteCitybike = L.geoJSON(window.citybikePunkte, {
@@ -152,7 +153,7 @@
 			var allInfo = '<h3>' + 'Station: ' + layer.feature.properties.STATION + '</h3>';
 			allInfo += '<div>' + 'Bezirk: ' + layer.feature.properties.BEZIRK + '</div>';
 			return allInfo;
-        }).addTo(map);
+        });//.addTo(map);
 
         // GeoJSON Daten der Wanderwege laden, nach Typ einfärben und Popup erstellen
         var linienWanderwege = L.geoJSON(window.wanderwegeLinien, {
@@ -171,7 +172,7 @@
             var tipp = '<h3>' + layer.feature.properties.BEZ_TEXT + '</h3>';
             tipp += '<a href="' + layer.feature.properties.URL_INFO + '">Infos</a>';
             return tipp;
-        }).addTo(map);
+        });//.addTo(map);
 
         // GeoJSON Daten der Märkte hinzufügen - https://www.data.gv.at/suche/?search-term=wien+m%C3%A4rkte&searchIn=catalog
         // DONE -- TODO: Flächen nach property INFOS_NACHHALTIG einfärben
@@ -196,7 +197,7 @@
 			allInfo += '<div>' + 'Infos zur Nachhaltigkeit: ' + layer.feature.properties.INFOS_NACHHALTIG + '</div>';
             allInfo += '<div>' + "<a href='" + layer.feature.properties.URL_MARKTAMT + "'>Weitere Informationen</a>" + '</div>';
 			return allInfo;
-        }).addTo(map);
+        });//.addTo(map);
 
         // WMTS-Layer Auswahl und Marker Auswahl Overlay hinzufügen
         // DONE -- TODO: WMTS-Layer Wien, Luftbild 1956 zur Hintergrundlayerauswahl hinzufügen
@@ -219,7 +220,20 @@
         // Ausschnitt setzen
         // TODO: Ausschnitt auf Stationen des Stadtpaziergangs setzen
 		//map.fitBounds(punkteSpaziergang.getBounds())
-		map.locate({setView: true, maxZoom: 16});
+		//map.locate({setView: true, maxZoom: 16});
+		
+		function onLocationFound(e) {
+			var radius = e.accuracy / 2;
+
+			L.marker(e.latlng).addTo(map)
+				.bindPopup("You are within " + radius + " meters from this point").openPopup();
+
+			L.circle(e.latlng, radius).addTo(map);
+		}
+
+		//map.on('locationfound', onLocationFound);
+		L.geoJSON(window.my_geojson).addTo(map);
+		
     </script>
 
 </body>
