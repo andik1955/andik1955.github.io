@@ -20,25 +20,36 @@
             text-align: center;
         }
 
-        #wienMap {
+		
+		body {
+			padding: 0;
+			margin: 0;
+		}
+		html, body, #wienmap {
+			height: 100vh;
+			width: 100vw;
+		}
+		
+		
+        <!--#wienMap {
             width: 900px;
             height: 600px;
             border: 1px solid black;
             margin: auto;
-        }
+        } -->
     </style>
 </head>
 
 <body>
-    <h1>Stadtspaziergang Wien</h1>
+    <!--<h1>Stadtspaziergang Wien</h1> -->
 
     <div id="wienMap"></div>
-    <h3>Quelle Geodaten</h3>
+    <!--<h3>Quelle Geodaten</h3>
     <p>
     Stadt Wien – <a href="http://data.wien.gv.at/">data.wien.gv.at</a><br>
     <a href="">Web Feature Service (WFS) - Wien</a><br>
     CC BY 3.0 Österreich<br>
-    </p>
+    </p> -->
 
     <script>
         // WMTS-Layer definieren - Quelle: http://www.basemap.at/wmts/1.0.0/WMTSCapabilities.xml
