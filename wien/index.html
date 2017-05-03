@@ -166,7 +166,7 @@
 			onEachFeature: function (feature, layer) {
 				var allInfo = '<h3>' + 'Station: ' + layer.feature.properties.STATION + '</h3>';
 				allInfo += '<div>' + 'Bezirk: ' + layer.feature.properties.BEZIRK + '</div>';
-				layer.bindPopup(allInfo);
+				layer.bindTooltip(allInfo);
 				return allInfo;
 			}
 			
