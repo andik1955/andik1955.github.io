@@ -14,6 +14,7 @@
     <script src="wanderwege_linien.json.js"></script>
 	<script src="maerkte_flaechen.json.js"></script>
 	<script src="my_geojson.js"></script>
+	<script src="leaflet-hash.js"></script>
 	<!-- DONE -- TODO: GeoJSON Datenskript für Märkte/Flächen einbinden - https://www.data.gv.at/suche/?search-term=wien+m%C3%A4rkte&searchIn=catalog -->
 
     <style>
@@ -92,7 +93,8 @@
             center: [48.20833, 16.373064],
             zoom: 12
         });
-
+		
+		
         // Maßstab hinzufügen
         L.control.scale({
             maxWidth: 200,
@@ -238,6 +240,9 @@
 
 		//map.on('locationfound', onLocationFound);
 		L.geoJSON(window.my_geojson).addTo(map);
+		
+		var hash = new L.Hash(map);
+		
 		
     </script>
 
