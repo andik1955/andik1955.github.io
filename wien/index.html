@@ -190,14 +190,19 @@
                 return {
                     color: farbe
                 };
-            }
+            },
+			filter: function(feature){
+				if (feature.geometry.type == "Polygon") {
+					return true
+					};
+				}
         }).bindPopup(function(layer) {
             var allInfo = '<h3>' + layer.feature.properties.NAME + '</h3>';
 			allInfo += '<div>' + 'Marktkategorie: ' + layer.feature.properties.MARKTKATEGORIE + '</div>';
 			allInfo += '<div>' + 'Infos zur Nachhaltigkeit: ' + layer.feature.properties.INFOS_NACHHALTIG + '</div>';
             allInfo += '<div>' + "<a href='" + layer.feature.properties.URL_MARKTAMT + "'>Weitere Informationen</a>" + '</div>';
 			return allInfo;
-        });//.addTo(map);
+        }).addTo(map);
 
         // WMTS-Layer Auswahl und Marker Auswahl Overlay hinzufügen
         // DONE -- TODO: WMTS-Layer Wien, Luftbild 1956 zur Hintergrundlayerauswahl hinzufügen
