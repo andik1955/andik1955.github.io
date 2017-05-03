@@ -162,12 +162,14 @@
                         iconUrl: 'http://www.data.wien.gv.at/icons/citybike.png'
                     })
                 });
-            }
-        }).bindPopup(function(layer) {
-            // DONE -- TODO: HTML-Popupfenster mit STATION und BEZIRK
-			var allInfo = '<h3>' + 'Station: ' + layer.feature.properties.STATION + '</h3>';
-			allInfo += '<div>' + 'Bezirk: ' + layer.feature.properties.BEZIRK + '</div>';
-			return allInfo;
+            },
+			onEachFeature: function (feature, layer) {
+				var allInfo = '<h3>' + 'Station: ' + layer.feature.properties.STATION + '</h3>';
+				allInfo += '<div>' + 'Bezirk: ' + layer.feature.properties.BEZIRK + '</div>';
+				layer.bindPopup(allInfo);
+				return allInfo;
+			}
+			
         }).addTo(cluster_group);
 		
 		map.addLayer(cluster_group);
