@@ -21,6 +21,9 @@
 	<link rel="stylesheet" href="MarkerCluster.css" />
 	<link rel="stylesheet" href="MarkerCluster.Default.css" />
 	
+	<link rel="stylesheet" href="leaflet-routing-machine.css" />
+	<script src="leaflet-routing-machine.js"></script>
+	
 	
 	
 	<!-- DONE -- TODO: GeoJSON Datenskript für Märkte/Flächen einbinden - https://www.data.gv.at/suche/?search-term=wien+m%C3%A4rkte&searchIn=catalog -->
@@ -258,6 +261,13 @@
 		
 		var hash = new L.Hash(map);
 		
+		
+		L.Routing.control({
+		  waypoints: [
+			L.latLng(47.267222, 11.392778),
+			L.latLng(48.20833, 16.373064)
+		  ]
+}).addTo(map);
 		
     </script>
 
