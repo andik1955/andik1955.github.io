@@ -11,15 +11,16 @@
     <!-- GeoJSON Datenskripts -->
     <script src="stadtspaziergang_punkte.json.js"></script>
 
-    <script src="leaflet.markercluster.js"></script>
-    <link rel="stylesheet" href="MarkerCluster.css" />
-    <link rel="stylesheet" href="MarkerCluster.Default.css" />
+    <script src="leaflet-markercluster/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" href="leaflet-markercluster/MarkerCluster.css" />
+    <link rel="stylesheet" href="leaflet-markercluster/MarkerCluster.Default.css" />
 
     <style>
         body {
             padding: 0;
             margin: 0;
         }
+        
         html,
         body,
         #wienMap {
@@ -67,7 +68,6 @@
 
         var cluster_group = L.markerClusterGroup();
 
-
         // Maßstab hinzufügen
         L.control.scale({
             maxWidth: 200,
@@ -96,7 +96,14 @@
                         iconUrl: iconByCategory[feature.properties.KATEGORIE]
                     })
                 });
+            },
+            onEachFeature: function(feature, layer) {
+                var allInfo = '<h3>' + layer.feature.properties.NAME + '</h3>';
+                allInfo += '<div>' + "<a href='" + layer.feature.properties.WEITERE_INF + "'>Weitere Informationen</a>" + '</div>';
+                layer.bindPopup(allInfo);
+                return allInfo;
             }
+
         }).addTo(cluster_group);
 
         map.addLayer(cluster_group);
