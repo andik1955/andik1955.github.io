@@ -8,7 +8,7 @@ window.myrouting = {
             },
             "properties": {
                 "color": "black",
-                "name": "Goldenes Dachl"
+                "name": "Goldenes_Dachl"
             }
         },
         {

@@ -59,7 +59,9 @@
 
         // Karte definieren und Ausschnitt setzen
         var map = L.map('wienMap', {
-            layers: [layers.geolandbasemap]
+            layers: [layers.bmapgrau],
+            center: [47, 11],
+            zoom: 12
         });
 
 
@@ -80,7 +82,6 @@
         }).addTo(map);
 
 
-        var routing = L.geoJSON(window.myrouting);
 
         L.Routing.control({
             waypoints: [
@@ -88,8 +89,6 @@
                 L.latLng(48.208493, 16.373118)
             ]
         }).addTo(map);
-
-        map.fitBounds(routing.getBounds());
     </script>
 
 </body>
