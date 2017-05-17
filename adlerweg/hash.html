@@ -77,8 +77,12 @@
 		
 		//solsteinhaus
 		var huts = [
-			L.marker([47.30817, 11.28819], {title: "Solsteinhaus", icon: L.icon({iconUrl: 'icons/cabin-2.png'})}),
+			L.marker([47.3080521,  11.288149], {title: "Solsteinhaus", icon: L.icon({
+			iconAnchor: [12, 41],
+			iconUrl: 'icons/cabin-2.png'})}),
 		];
+		
+		
 		
 		var hutslayer = L.featureGroup();
 		
@@ -86,7 +90,16 @@
 			hutslayer.addLayer(huts[i]);				
 		};
 		
-		hutslayer.addTo(map);
+		//hutslayer.addTo(map);
+		
+		map.on("zoomend", function() {
+			if (map.getZoom() > 14 ) {
+				map.addLayer(hutslayer);
+			}
+			else {
+				map.removeLayer(hutslayer);
+			}
+		});
 		
         // WMTS-Layer Auswahl hinzufügen
         var layerControl = L.control.layers({
