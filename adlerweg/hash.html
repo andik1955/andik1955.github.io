@@ -8,10 +8,13 @@
     <title>basemap.at mit leaflet-hash Plugin</title>
 
     <link rel="stylesheet" href="js/leaflet/leaflet.css" />
+	<link rel="stylesheet" href="js/leaflet-elevation/leaflet.elevation-0.0.4.css" />
+	
     <script src="js/leaflet/leaflet.js"></script>
     <script src="js/leaflet-hash/leaflet-hash.js"></script>
 	<script src="data/AdlerwegEtappe14.js"></script>
-	
+	<script src="js/leaflet-elevation/leaflet.elevation-0.0.4.min.js"></script>
+	<script src="https://d3js.org/d3.v3.min.js"></script>
 	
     <style>
         body {
@@ -71,8 +74,13 @@
             imperial: false
         }).addTo(map);
 
+		var el = L.control.elevation();
+		el.addTo(map);
+		
 		//load Geojson		
-		var etappe14 = L.geoJSON(window.etappe14).addTo(map);
+		var etappe14 = L.geoJSON(window.etappe14, {
+			onEachFeature: el.addData.bind(el)
+		}).addTo(map);
 		
 		
 		//solsteinhaus
