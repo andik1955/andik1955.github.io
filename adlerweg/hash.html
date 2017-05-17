@@ -75,6 +75,19 @@
 		var etappe14 = L.geoJSON(window.etappe14).addTo(map);
 		
 		
+		//solsteinhaus
+		var huts = [
+			L.marker([47.30817, 11.28819], {title: "Solsteinhaus", icon: L.icon({iconUrl: 'icons/cabin-2.png'})}),
+		];
+		
+		var hutslayer = L.featureGroup();
+		
+		for (var i=0; i < huts.length; i++) {
+			hutslayer.addLayer(huts[i]);				
+		};
+		
+		hutslayer.addTo(map);
+		
         // WMTS-Layer Auswahl hinzufügen
         var layerControl = L.control.layers({
             "basemap.at - STANDARD": layers.geolandbasemap,
