@@ -16,6 +16,8 @@
 	<script src="js/leaflet-elevation/leaflet.elevation-0.0.4.min.js"></script>
 	<script src="https://d3js.org/d3.v3.min.js"></script>
 	
+	<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
+	
     <style>
         body {
             padding: 0px;
@@ -78,9 +80,14 @@
 		el.addTo(map);
 		
 		//load Geojson		
+		/*
 		var etappe14 = L.geoJSON(window.etappe14, {
 			onEachFeature: el.addData.bind(el)
 		}).addTo(map);
+		*/
+		
+		//omnivore gpx
+		omnivore.gpx('data/AdlerwegEtappe14.gpx').addTo(map);
 		
 		
 		//solsteinhaus
@@ -99,6 +106,7 @@
 		};
 		
 		//hutslayer.addTo(map);
+		
 		
 		map.on("zoomend", function() {
 			if (map.getZoom() > 14 ) {
