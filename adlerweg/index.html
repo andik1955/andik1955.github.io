@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Adlerweg</title>
+
+    <link rel="stylesheet" href="js/leaflet/leaflet.css" />
+	<link rel="stylesheet" href="js/leaflet-elevation/leaflet.elevation-0.0.4.css" />
+	
+    <script src="js/leaflet/leaflet.js"></script>
+    <script src="js/leaflet-hash/leaflet-hash.js"></script>
+	<script src="data/AdlerwegEtappe14.js"></script>
+	<script src="js/leaflet-elevation/leaflet.elevation-0.0.4.min.js"></script>
+	<script src="https://d3js.org/d3.v3.min.js"></script>
+	
+	<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
+	
+    <style>
+        body {
+            padding: 0px;
+            margin: 10px;
+        }
+		
+        		
+		h1 {
+            text-align: center;
+        }
+		
+		#map {
+            width:1024px;
+            height: 600px;
+            border: 1px solid black;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+	<h1>Adlerweg Etappe 14: Innsbruck - Solsteinhaus</h1>
+	<div>Mit der Mittenwaldbahn von Innsbruck oder zu Fuß vom Bahnhof in Richtung Westen der Salurnerstraße bis zur Triumphpforte folgend – dann nach links in die Maria- Theresien-Straße bis diese immer geradeaus in die Altstadt zum Goldenen Dachl führt – dort rechts vorbei in die Domgasse bis zum Dom zu St. Jakob. Dem Jakobsweg durch Innsbruck weiter nach Kranebitten, Völs, Kematen folgend und dann ab Kematen dem Wanderweg über die Innbrücke in Richtung Zirl nehmen, um dann weiter durch die Ehnbachklamm in Richtung Plainer zum Bahnhof Hochzirl und direkt vom Bahnhof der Beschilderung „Solsteinhaus“ folgen. Nördlich der Gleise gleich auf einem guten Steig in den dichten Wald hinein. Der Steig mündet nach kurzer Zeit in einen Karrenweg, auf diesem direkt und recht steil nach oben. Bald mündet links der Weg vom Krankenhaus Hochzirl ein, weiter aufwärts und in nordöstlicher Richtung steil durch den Wald. Nach der Überquerung des kleinen Bachs, der vom Brunnenschrofen herunterrinnt, ein kurzes Stück fast eben bzw. nur sanft ansteigend dahin. Die Route ähnelt jetzt beinahe einem Fahrweg und zieht bald wieder kräftiger empor. In einer Höhe von rund 1.350 Metern trifft die Route mit einem breiten Forstweg zusammen – hier weiter nach oben. Es geht oberhalb einer kleinen Schlucht vorbei und nach dem Bach über einen Steig im lichter werdenden Wald bzw. durch die Latschen empor ins freie Almgebiet bei der lieblichen Solnalm. Von der Solnalm erblickt man erstmals das Solsteinhaus. Rechts an der Alm vorbei und in nördlicher Richtung taleinwärts auf das Höllkar zu. Dabei wird die eine oder andere Schuttrinne überquert. Der Steig überquert dann die Ausläufer des Höllkars sowie den Bach und zieht schließlich in den Latschen gemütlich den Hang nach oben zum Erlsattel mit dem Solsteinhaus.</div>
+	
+    <div id="map"></div>
+	
+	<a href="http://www.tirol.at/reisefuehrer/sport/wandern/wandertouren/a-adlerweg-etappe-14-innsbruck-solsteinhaus">Zur Wanderseite</a>
+	<div> Autor: <a href="https://github.com/andik1955/andik1955.github.io">Andi auf Github</a> </div>
+	
+    <script>
+        // WMTS-Layer basemap.at - Quelle: http://www.basemap.at/wmts/1.0.0/WMTSCapabilities.xml
+        var layers = {
+            geolandbasemap: L.tileLayer("https://{s}.wien.gv.at/basemap/geolandbasemap/normal/google3857/{z}/{y}/{x}.png", {
+                subdomains: ['maps', 'maps1', 'maps2', 'maps3', 'maps4'],
+                attribution: 'Datenquelle: <a href="http://www.basemap.at/">basemap.at</a>'
+            }),
+            bmapgrau: L.tileLayer("https://{s}.wien.gv.at/basemap/bmapgrau/normal/google3857/{z}/{y}/{x}.png", {
+                subdomains: ['maps', 'maps1', 'maps2', 'maps3', 'maps4'],
+                attribution: 'Datenquelle: <a href="http://www.basemap.at/">basemap.at</a>'
+            }),
+            bmapoverlay: L.tileLayer("https://{s}.wien.gv.at/basemap/bmapoverlay/normal/google3857/{z}/{y}/{x}.png", {
+                subdomains: ['maps', 'maps1', 'maps2', 'maps3', 'maps4'],
+                attribution: 'Datenquelle: <a href="http://www.basemap.at/">basemap.at</a>'
+            }),
+            bmaphidpi: L.tileLayer("https://{s}.wien.gv.at/basemap/bmaphidpi/normal/google3857/{z}/{y}/{x}.jpeg", {
+                subdomains: ['maps', 'maps1', 'maps2', 'maps3', 'maps4'],
+                attribution: 'Datenquelle: <a href="http://www.basemap.at/">basemap.at</a>'
+            }),
+            bmaporthofoto30cm: L.tileLayer("https://{s}.wien.gv.at/basemap/bmaporthofoto30cm/normal/google3857/{z}/{y}/{x}.jpeg", {
+                subdomains: ['maps', 'maps1', 'maps2', 'maps3', 'maps4'],
+                attribution: 'Datenquelle: <a href="http://www.basemap.at/">basemap.at</a>'
+            }),
+            osm: L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                subdomains: ['a', 'b', 'c'],
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            })
+        };
+
+        // Karte definieren
+        var map = L.map('map', {
+            layers: [layers.geolandbasemap],
+            center : [47.654, 13.370],
+            zoom : 8
+        });
+
+        // Maßstab hinzufügen
+        L.control.scale({
+            maxWidth: 200,
+            metric: true,
+            imperial: false
+        }).addTo(map);
+
+		var el = L.control.elevation({
+			draggable: true
+		});
+		el.addTo(map);
+		
+		//load Geojson		
+		
+		var etappe14 = L.geoJSON(window.etappe14, {
+			onEachFeature: el.addData.bind(el)
+		});
+		
+		
+		//omnivore gpx
+		omnivore.gpx('data/AdlerwegEtappe14.gpx').addTo(map);
+		
+		
+		//solsteinhaus
+		var huts = [
+			L.marker([47.3080521,  11.288149], {title: "Solsteinhaus", icon: L.icon({
+			iconAnchor: [12, 41],
+			iconUrl: 'icons/cabin-2.png'})}),
+
+			L.marker([47.2809903, 11.2497316], {title: "Etappenstart", icon: L.icon({
+			iconAnchor: [12, 41],
+			iconUrl: 'icons/footprint.png'})}),
+
+			L.marker([47.3080376, 11.2881705], {title: "Etappenende", icon: L.icon({
+			iconAnchor: [12, 41],
+			iconUrl: 'icons/footprint.png'})}),
+			
+			L.marker([47.3012299, 11.2752], {title: "Info", icon: L.icon({
+			iconAnchor: [12, 41],
+			iconUrl: 'icons/information.png'})}).bindPopup("<b> <ul><li>Ausgangspunkt: Innsbruck Hauptbahnhof</li>	<li>Endpunkt: Solsteinhaus</li>	<li>Höhenmeter bergauf: 940</li>	<li>Höhenmeter bergab: 70</li>	<li>Höchster Punkt: 1805</li>	<li>Schwierigkeitsgrad: mittelschwierig</li>	<li>Streckenlänge (in km): 7</li>	<li>Gehzeit (in Stunden): 2,75</li>	<li>Einkehrmöglichkeiten: Solsteinhaus</li>	<li>ID in GPS-Track: A14</li> </ul> </b>")
+		];
+		
+		var hutslayer = L.featureGroup();
+		
+		for (var i=0; i < huts.length; i++) {
+			hutslayer.addLayer(huts[i]);				
+		};
+		
+		//hutslayer.addTo(map);
+		
+		
+		map.on("zoomend", function() {
+			if (map.getZoom() > 14 ) {
+				map.addLayer(hutslayer);
+			}
+			else {
+				map.removeLayer(hutslayer);
+			}
+		});
+		
+        // WMTS-Layer Auswahl hinzufügen
+        var layerControl = L.control.layers({
+            "basemap.at - STANDARD": layers.geolandbasemap,
+            "basemap.at - GRAU": layers.bmapgrau,
+            "basemap.at - OVERLAY": layers.bmapoverlay,
+            "basemap.at - HIGH-DPI": layers.bmaphidpi,
+            "basemap.at - ORTHOFOTO": layers.bmaporthofoto30cm,
+            "OpenStreetMap": layers.osm,
+        }).addTo(map);
+
+        // leaflet-hash aktivieren
+        var hash = new L.Hash(map);
+
+    </script>
+
+</body>
+
+</html>
