@@ -92,7 +92,7 @@
         }).addTo(map);
 
 		var el = L.control.elevation({
-			draggable: true
+			position: "topleft"
 		});
 		el.addTo(map);
 		
@@ -104,15 +104,36 @@
 		
 		
 		//omnivore gpx
-		omnivore.gpx('data/AdlerwegEtappe14.gpx').addTo(map);
+		var etappe14 = omnivore.gpx('data/AdlerwegEtappe14.gpx').addTo(map);
+		
+		etappe14.on('ready', function () {
+            // Popup hinzufügen
+            var markup = '<h3>Adlerweg-Etappe 1: St. Johann – Gaudeamushütte</h3>';
+            markup += '<p>Die erste Etappe am Adlerweg führt vom St. Johanner Ortsteil Hinterkaiser zur Gaudeamushütte auf 1.263 Metern Seehöhe. Zei besondere Naturschauspiele entlang der Strecke sind der imposante Schleierwasserfall und die Höhle Diebsöfen.</p>'
+            markup += '<li>Ausgangspunkt: Innsbruck Hauptbahnhof</li>';
+            markup += '<li>Endpunkt: Solsteinhaus</li>';
+            markup += '<li>Höhenmeter bergauf: 940</li>';
+            markup += '<li>Höhenmeter bergab: 70</li>';
+            markup += '<li>Höchster Punkt: 1805</li>';
+            markup += '<li>Schwierigkeitsgrad: mittelschwierig</li>';
+            markup += '<li>Streckenlänge (in km): 7</li>';
+            markup += '<li>Gehzeit (in Stunden): 2,75</li>';
+            markup += '<li>Einkehrmöglichkeiten: Solsteinhaus</li>';
+            markup += '<li>ID in GPS-Track: A14</li>';
+            etappe14.bindPopup(markup, { maxWidth : 450 });
+
+            // Ausschnitt setzen
+            map.fitBounds(etappe14.getBounds());
+
+            // Höhenprofil erzeugen
+            etappe14.eachLayer(function(layer) {
+                profileControl.addData(layer.feature);
+            });
+        });
 		
 		
 		//solsteinhaus
 		var huts = [
-			L.marker([47.3080521,  11.288149], {title: "Solsteinhaus", icon: L.icon({
-			iconAnchor: [11, 32],
-			iconUrl: 'icons/cabin-2.png'})}),
-
 			L.marker([47.2809903, 11.2497316], {title: "Etappenstart", icon: L.icon({
 			iconAnchor: [16, 35],
 			iconUrl: 'icons/footprint.png'})}),
@@ -121,9 +142,9 @@
 			iconAnchor: [16, 35],
 			iconUrl: 'icons/footprint.png'})}),
 			
-			L.marker([47.3012299, 11.2752], {title: "Info", icon: L.icon({
-			iconAnchor: [16, 35],
-			iconUrl: 'icons/information.png'})}).bindPopup("<b> <ul><li>Ausgangspunkt: Innsbruck Hauptbahnhof</li>	<li>Endpunkt: Solsteinhaus</li>	<li>Höhenmeter bergauf: 940</li>	<li>Höhenmeter bergab: 70</li>	<li>Höchster Punkt: 1805</li>	<li>Schwierigkeitsgrad: mittelschwierig</li>	<li>Streckenlänge (in km): 7</li>	<li>Gehzeit (in Stunden): 2,75</li>	<li>Einkehrmöglichkeiten: Solsteinhaus</li>	<li>ID in GPS-Track: A14</li> </ul> </b>")
+			L.marker([47.3080521,  11.288149], {title: "Solsteinhaus", icon: L.icon({
+			iconAnchor: [11, 32],
+			iconUrl: 'icons/cabin-2.png'})})
 		];
 		
 		var hutslayer = L.featureGroup();
@@ -152,12 +173,10 @@
             "basemap.at - HIGH-DPI": layers.bmaphidpi,
             "basemap.at - ORTHOFOTO": layers.bmaporthofoto30cm,
             "OpenStreetMap": layers.osm,
-        }).addTo(map);
+        },{
+			"Etappe 14": etappe14
+		}).addTo(map);
 
-        // leaflet-hash aktivieren
-        var hash = new L.Hash(map);
-		
-		
 		map.fitBounds(etappe14.getBounds());
     </script>
 
