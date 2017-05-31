@@ -132,8 +132,10 @@
 			var streckenbeschreibung = window.ETAPPENINFO[track].Streckenbeschreibung;
 			console.log(kurztext);
 			gpxTrack = omnivore.gpx('data/' + track).addTo(map);
+			
 			document.getElementById("Kurztext").innerHTML = kurztext;
 			document.getElementById("Streckenbeschreibung").innerHTML = streckenbeschreibung;
+			
 			// nach erfolgreichem Laden Popup hinzufügen, Ausschnitt setzen und Höhenprofil erzeugen
 			gpxTrack.on('ready', function () {
 				// Popup hinzufügen
@@ -262,15 +264,14 @@
 		etappenSelektor.onchange = function (evt) {
 		console.log("Change event: ", evt);
 		console.log("GPX Track laden: ", etappenSelektor[etappenSelektor.selectedIndex].value);
-		var fileName = etappenSelektor[etappenSelektor.selectedIndex].value;
+		//var fileName = etappenSelektor[etappenSelektor.selectedIndex].value;
 		//fileName = fileName.substr(0, 16); 
 		//console.log(fileName);
-		var info = window.ETAPPENINFO[fileName];
-		console.log(info.Titel);
+		//var info = window.ETAPPENINFO[fileName];
+		//console.log(info.Titel);
 		loadTrack(etappenSelektor[etappenSelektor.selectedIndex].value);
 		}
 		loadTrack("AdlerwegEtappe01.gpx");
-	console.log(etappenSelektor[etappenSelektor.selectedIndex].value);
 
     </script>
 <h4><a href="https://github.com/andik1955">Autor: Andreas Kollert</a></h4>
