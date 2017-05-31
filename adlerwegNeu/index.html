@@ -16,6 +16,7 @@
 	<script src="js/leaflet-elevation/leaflet.elevation-0.0.4.min.js"></script>
 	<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 	<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
+	<script src="etappeninfo.js"></script>
 	
     <style>
         body {
@@ -211,7 +212,7 @@
         // leaflet-hash aktivieren
         var hash = new L.Hash(map);
 		
-
+/*
 		var huts = L.icon({
 			iconUrl: 'icons/hut.png',
 			iconAnchor: [16, 37]		
@@ -220,8 +221,8 @@
 			L.marker ([47.30805, 11.28811], { title: "Solsteinhaus", icon: huts } ),
 			L.marker ([47.33112, 11.26743], { title: "Eppzirleralm", icon: huts} )
 		]).addTo(map);
-		
-
+*/	
+/*
 		var start = L.icon({
 			iconUrl: 'icons/hiking.png',
 			iconAnchor: [16, 37]
@@ -232,7 +233,8 @@
 			iconUrl: 'icons/finish.png',
 			iconAnchor: [16, 37]
 		});
-		L.marker([47.36996990, 11.14378990], { title: "Ziel Etappe 15", icon: end}).addTo(map);	
+		L.marker([47.36996990, 11.14378990], { title: "Ziel Etappe 15", icon: end}).addTo(map);
+*/
         // WMTS-Layer Auswahl hinzufügen
         var layerControl = L.control.layers({
             "basemap.at - STANDARD": layers.geolandbasemap,
@@ -246,19 +248,25 @@
             //"Adlerweg Etappe 15" : gpxTrack
         }
 		).addTo(map);
-
+	
 	//einzelne Etappen wählen
 	var etappenSelektor = document.getElementById ("etappen");
 		//console.log("Selektor", etappenSelektor);
 		etappenSelektor.onchange = function (evt) {
 		console.log("Change event: ", evt);
 		console.log("GPX Track laden: ", etappenSelektor[etappenSelektor.selectedIndex].value);
+		var fileName = etappenSelektor[etappenSelektor.selectedIndex].value;
+		//fileName = fileName.substr(0, 16); 
+		//console.log(fileName);
+		var info = window.ETAPPENINFO[fileName];
+		console.log(info.Titel);
 		loadTrack(etappenSelektor[etappenSelektor.selectedIndex].value);
 		}
 		loadTrack("AdlerwegEtappe01.gpx");
+	console.log(etappenSelektor[etappenSelektor.selectedIndex].value);
 
     </script>
-<h4><a href="https://github.com/joschef">Autor: Joschua Forster</a></h4>
+<h4><a href="https://github.com/andik1955">Autor: Andreas Kollert</a></h4>
 </body>
 
 </html>
