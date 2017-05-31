@@ -71,7 +71,10 @@
 		<option  value ="AdlerwegEtappeO9.gpx">Adlerweg Etappe O9</option>
 	</select>
 	
-	
+	<h4>Kurztext</h4>
+	<div id="Kurztext"></div>
+	<h4>Streckenbeschreibung</h4>
+	<div id="Streckenbeschreibung"</div>
 	
     <script>
         // WMTS-Layer basemap.at - Quelle: http://www.basemap.at/wmts/1.0.0/WMTSCapabilities.xml
@@ -125,8 +128,12 @@
 		
 		function loadTrack(track) {
 			// GPX Track laden
+			var kurztext = window.ETAPPENINFO[track].Kurztext;
+			var streckenbeschreibung = window.ETAPPENINFO[track].Streckenbeschreibung;
+			console.log(kurztext);
 			gpxTrack = omnivore.gpx('data/' + track).addTo(map);
-			
+			document.getElementById("Kurztext").innerHTML = kurztext;
+			document.getElementById("Streckenbeschreibung").innerHTML = streckenbeschreibung;
 			// nach erfolgreichem Laden Popup hinzufügen, Ausschnitt setzen und Höhenprofil erzeugen
 			gpxTrack.on('ready', function () {
 				// Popup hinzufügen
