@@ -20,8 +20,17 @@
   * Nordpfeil
   * Darstellung 'Alberghi diffusi'
   
+    * Datensatz in dadta-Ordner auslagern
     * clustered Markers
     * Popups mit Infos
+    
+  * Evtl. zusaetzliche Infos
+    
+    * Hotels
+    * Wikipedia Info zu größeren Staedten/Orten
+    * Gemeindegrenzen (--> [http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data](Eurostat Geodata))
+      * [http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/land-cover#clc](Land Use/ Land Cover)
+      * [http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units/communes#communes13](Kommunen)
   
   * Credits
   
