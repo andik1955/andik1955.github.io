@@ -4,5 +4,4 @@
 
 * Links zu anderen Friaul-Seiten
 * div mit Leaflet-Karte
-
 ··* Zoom auf Friaul-Region
