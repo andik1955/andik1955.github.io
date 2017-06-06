@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Adlerweg Etappe 15</title>
+
+    <link rel="stylesheet" href="js/leaflet/leaflet.css" />
+	<link rel="stylesheet" href="js/leaflet-elevation/leaflet.elevation-0.0.4.css" />
+
+    <script src="js/leaflet/leaflet.js"></script>
+	<script src="js/leaflet-omnivore/leaflet-omnivore.js"></script>
+    <script src="js/leaflet-hash/leaflet-hash.js"></script>
+	<script src="js/leaflet-elevation/leaflet.elevation-0.0.4.min.js"></script>
+	<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+	<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
+	<script src="etappeninfo.js"></script>
+	<script src="map.js"></script>
+	
+    <style>
+        body {
+            padding: 15px;
+            margin: 15px;
+        }
+        html, body, #map {
+            height: 600px;
+            width: 1024px;
+        }
+    </style>
+</head>
+
+<body>
+	<h2>Adlerweg-Etappe 15: Solsteinhaus – Leutasch</h2>
+    <p>Mitten durchs Karwendel führt diese Etappe und verläuft über die Eppzirler Scharte in das Leutaschtal und weiter zu den 24 Weilern der Gemeinde Leutasch. Dabei werden Almgebiete, Mischwälder und die Gießenbachklamm durchquert.</p>
+	
+	<div id="map"></div>
+	<select id="etappen">
+		<option  value ="AdlerwegEtappe01.gpx">Adlerweg Etappe 01</option>
+		<option  value ="AdlerwegEtappe02.gpx">Adlerweg Etappe 02</option>
+		<option  value ="AdlerwegEtappe03.gpx">Adlerweg Etappe 03</option>
+		<option  value ="AdlerwegEtappe04.gpx">Adlerweg Etappe 04</option>
+		<option  value ="AdlerwegEtappe05.gpx">Adlerweg Etappe 05</option>
+		<option  value ="AdlerwegEtappe06.gpx">Adlerweg Etappe 06</option>
+		<option  value ="AdlerwegEtappe07.gpx">Adlerweg Etappe 07</option>
+		<option  value ="AdlerwegEtappe08.gpx">Adlerweg Etappe 08</option>
+		<option  value ="AdlerwegEtappe09.gpx">Adlerweg Etappe 09</option>
+		<option  value ="AdlerwegEtappe10.gpx">Adlerweg Etappe 10</option>
+		<option  value ="AdlerwegEtappe11.gpx">Adlerweg Etappe 11</option>
+		<option  value ="AdlerwegEtappe12.gpx">Adlerweg Etappe 12</option>
+		<option  value ="AdlerwegEtappe13.gpx">Adlerweg Etappe 13</option>
+		<option  value ="AdlerwegEtappe14.gpx">Adlerweg Etappe 14</option>
+		<option  value ="AdlerwegEtappe15.gpx">Adlerweg Etappe 15</option>
+		<option  value ="AdlerwegEtappe16.gpx">Adlerweg Etappe 16</option>
+		<option  value ="AdlerwegEtappe17.gpx">Adlerweg Etappe 17</option>
+		<option  value ="AdlerwegEtappe18.gpx">Adlerweg Etappe 18</option>
+		<option  value ="AdlerwegEtappe19.gpx">Adlerweg Etappe 19</option>
+		<option  value ="AdlerwegEtappe20.gpx">Adlerweg Etappe 20</option>
+		<option  value ="AdlerwegEtappe21.gpx">Adlerweg Etappe 21</option>
+		<option  value ="AdlerwegEtappe22.gpx">Adlerweg Etappe 22</option>
+		<option  value ="AdlerwegEtappe23.gpx">Adlerweg Etappe 23</option>
+		<option  value ="AdlerwegEtappe24.gpx">Adlerweg Etappe 24</option>
+		<option  value ="AdlerwegEtappeO1.gpx">Adlerweg Etappe O1</option>
+		<option  value ="AdlerwegEtappeO2.gpx">Adlerweg Etappe O2</option>
+		<option  value ="AdlerwegEtappeO3.gpx">Adlerweg Etappe O3</option>
+		<option  value ="AdlerwegEtappeO4.gpx">Adlerweg Etappe O4</option>
+		<option  value ="AdlerwegEtappeO5.gpx">Adlerweg Etappe O5</option>
+		<option  value ="AdlerwegEtappeO6.gpx">Adlerweg Etappe O6</option>
+		<option  value ="AdlerwegEtappeO7.gpx">Adlerweg Etappe O7</option>
+		<option  value ="AdlerwegEtappeO8.gpx">Adlerweg Etappe O8</option>
+		<option  value ="AdlerwegEtappeO9.gpx">Adlerweg Etappe O9</option>
+	</select>
+	
+	<h4>Kurztext</h4>
+	<div id="Kurztext"></div>
+	<h4>Streckenbeschreibung</h4>
+	<div id="Streckenbeschreibung"</div>
+	
+ 
+ 
+ 
+<h4><a href="https://github.com/andik1955">Autor: Andreas Kollert</a></h4>
+</body>
+
+</html>
