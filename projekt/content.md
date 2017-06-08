@@ -8,6 +8,9 @@
   * Bilder unter CC-Lizenz
   * Hintergrundbild?
   * an anderen Tourismus-Portalen orientieren? (--> Tirol?!)
+  * div mit Header/drei Links zu den Seiten des Projekts
+  * Haupt-div mit Karte
+  * evtl. Möglichkeiten einzelne Infos/Karteninhalte aus- und anschalten zu können
 
 * Links zu anderen Friaul-Seiten
 
@@ -37,3 +40,4 @@
     * Leaflet
     * Leaflet-Plugins
     * [Opendata-Friaul Uebersicht](https://www.dati.friuliveneziagiulia.it/browse?limitTo=maps), [Alberghi Diffusi](https://www.dati.friuliveneziagiulia.it/Turismo/Alberghi-diffusi-mappa/mb52-xc6d)
+    * Quellen und Lizenzen immer mitdokumentieren bzw. gleich in Seite einbauen

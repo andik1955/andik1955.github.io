@@ -39,6 +39,14 @@ window.onload = function() {
             return allInfo;
         }).addTo(map);
         
+        var north = L.control({position: "bottomleft"});
+            north.onAdd = function(map) {
+            var div = L.DomUtil.create("div", "info legend");
+            div.innerHTML = '<img width=20 src="icons/northarrow_darkgrey.png">';
+            return div;
+        }
+        north.addTo(map);
+        
         // WMTS-Layer Auswahl hinzufügen
         var layerControl = L.control.layers({
             "OpenStreetMap": layers.osm},
