@@ -10,10 +10,19 @@
     <link rel="stylesheet" href="js/leaflet/leaflet.css" />
     <script src="js/leaflet/leaflet.js"></script>
     
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+    
+    
+    <script src="plugins/leaflet-markercluster/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" href="plugins/leaflet-markercluster/MarkerCluster.css" />
+    <link rel="stylesheet" href="plugins/leaflet-markercluster/MarkerCluster.Default.css" />
+    
     <!-- <script src="js/leaflet-hash/leaflet-hash.js"></script> -->
     
     <link rel="stylesheet" href="css/friaul.css" />
     <script src="data/friaul_subregion.js"></script>
+    <script src="data/provinfo.js"></script>
+    <script src="data/alberghi.js"></script>
     <script src="map.js"></script>
     
     <style>
@@ -42,7 +51,27 @@
         
         <div id="map"></div>
         
-        <div id="mapinfo">Bliablablub</div>
+        
+        <div id="mapinfo">
+        Um Informationen zu den Provinzen anzuzeigen, bitte in die jeweilige Provinz klicken.
+        <h2>Provinz</h2>
+        
+        <div id="regname"></div>
+        
+        <h3>Provinzhauptstadt</h3>
+        
+        <div id="capname"></div>
+        
+        <h3>Einwohner</h3>
+        
+        <div id="bev"></div>
+        
+        <h3>Kurzbeschreibung</h3>
+        
+        <div id="description"></div>
+        
+        
+        </div>
         
     </div>
     

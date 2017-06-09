@@ -21,13 +21,33 @@ window.onload = function() {
             imperial: false
         }).addTo(map);
 		
-		
+        
+        var cluster_group = L.markerClusterGroup();
+        
+        
+        // alberghi diffusi
+        var punkteSpaziergang = L.geoJSON(window.alberghi, {
+            pointToLayer: function(feature, latlng) {
+                return L.marker(latlng);
+            },
+            onEachFeature: function(feature, layer) {
+                var allInfo = '<h3>Name des Gasthofs</h3>';
+                allInfo += layer.feature.properties.denominazione;
+                allInfo += '<div>' + "<a href='" + layer.feature.properties.sito + "'>Weitere Informationen</a>" + '</div>';
+                layer.bindPopup(allInfo);
+                return allInfo;
+            }
+
+        }).addTo(cluster_group);
+
+        map.addLayer(cluster_group);
+        
         // leaflet-hash aktivieren
         //var hash = new L.Hash(map);
 
         
         // GeoJSON Daten der Friaul Uebersicht einfuegen
-        var subregions = L.geoJSON(window.subregion, {
+        var subregions = L.geoJSON(window.subregion,{
             filter: function(feature) {
                 if (feature.geometry.type == "Polygon") {
                     return true
@@ -35,6 +55,11 @@ window.onload = function() {
             }
         }).bindPopup(function(layer) {
             var allInfo = '<h3>Provinz ' + layer.feature.properties.Name + '</h3>';
+            document.getElementById("regname").innerHTML = layer.feature.properties.Name;
+			document.getElementById("capname").innerHTML = window.provinfo[layer.feature.properties.Name].capital;
+            document.getElementById("bev").innerHTML = window.provinfo[layer.feature.properties.Name].bevprov;
+            document.getElementById("description").innerHTML = window.provinfo[layer.feature.properties.Name].info;
+            
             return allInfo;
         }).addTo(map);
         
@@ -50,7 +75,8 @@ window.onload = function() {
         var layerControl = L.control.layers({
             "OpenStreetMap": layers.osm},
             {
-            "Provinzen": subregions
+            "Provinzen": subregions,
+            "Gasthof": cluster_group,
 			 }).addTo(map);
              
         map.fitBounds(subregions.getBounds());

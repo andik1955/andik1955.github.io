@@ -91,6 +91,6 @@ right: 2%;
 width: 26%;
 float: right;
 bottom: 0;
-overflow: hidden; 
+overflow: scroll;
 background: #D3D3D3;
 }
