@@ -4,7 +4,13 @@ window.onload = function() {
             osm: L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 subdomains: ['a', 'b', 'c'],
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-            })
+            }),
+            hikeBike: L.tileLayer('http://{s}.tiles.wmflabs.org/hikebike/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }),
+            hikeBikeHillshade: L.tileLayer('http://{s}.tiles.wmflabs.org/hillshading/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }),
         };
 
         // Karte definieren
@@ -57,7 +63,7 @@ window.onload = function() {
 			document.getElementById("capname").innerHTML = window.provinfo[layer.feature.properties.Name].capital;
             document.getElementById("bev").innerHTML = window.provinfo[layer.feature.properties.Name].bevprov;
             document.getElementById("description").innerHTML = window.provinfo[layer.feature.properties.Name].info;
-            
+            document.getElementById("info").innerHTML = "";
             return allInfo;
         }).addTo(map);
         
@@ -79,7 +85,10 @@ window.onload = function() {
         
         // WMTS-Layer Auswahl hinzufügen
         var layerControl = L.control.layers({
-            "OpenStreetMap": layers.osm},
+            "OpenStreetMap": layers.osm,
+            "Hike & Bike": layers.hikeBike,
+            "Hillshade": layers.hikeBikeHillshade,
+            },
             {
             "Region Friaul": overview,
             "Provinzen": subregions,
