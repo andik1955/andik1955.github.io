@@ -16,8 +16,7 @@ top: 0;
 left: 2%;
 right: 2%; 
 height: 140px; /*Height of frame div*/
-background-color:  #333;
-
+background-color:  #D3D3D3;
 }
 
 #linkbar{
@@ -27,8 +26,8 @@ left: 2%;
 right: 2%; 
 height: 60px; /*Height of frame div*/
 overflow: hidden; /*Disable scrollbars. Set to "scroll" to enable*/
-background-color: black;
-color: black;
+background-color: #333;
+color: #333;
 text-align: center;
 }
 
@@ -57,7 +56,7 @@ li a {
 }
 
 .active {
-background-color:#4CAF50;
+background-color:#3CB371;
 }
 
 a:hover:not(.active) {
@@ -93,5 +92,5 @@ width: 26%;
 float: right;
 bottom: 0;
 overflow: hidden; 
-background: #fff;
+background: #D3D3D3;
 }
