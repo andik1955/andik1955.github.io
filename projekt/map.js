@@ -15,7 +15,7 @@ window.onload = function() {
 
         // Karte definieren
         var map = L.map('map', {
-            layers: [layers.osm],
+            layers: [layers.hikeBike],
             center : [46.15972, 13.011111],
             zoom : 9
         });
