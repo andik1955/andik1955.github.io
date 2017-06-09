@@ -34,8 +34,7 @@ window.onload = function() {
                 };
             }
         }).bindPopup(function(layer) {
-            var allInfo = '<h3>Name der Region:</h3>';
-            allInfo += '<div>' + layer.feature.properties.Name + '</div>';
+            var allInfo = '<h3>Provinz ' + layer.feature.properties.Name + '</h3>';
             return allInfo;
         }).addTo(map);
         
@@ -51,7 +50,7 @@ window.onload = function() {
         var layerControl = L.control.layers({
             "OpenStreetMap": layers.osm},
             {
-            "Administrative Boundary": subregions
+            "Provinzen": subregions
 			 }).addTo(map);
              
         map.fitBounds(subregions.getBounds());

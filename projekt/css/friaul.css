@@ -5,22 +5,66 @@ border: 0;
 overflow: hidden;
 height: 100%; 
 max-height: 100%; 
+background-color: #D3D3D3;
 }
 
-#framecontent{
+#topcontent{
 position: absolute; 
 top: 0; 
 left: 2%;
 right: 2%; 
-height: 130px; /*Height of frame div*/
+height: 140px; /*Height of frame div*/
 overflow: hidden; /*Disable scrollbars. Set to "scroll" to enable*/
-background-color: navy;
-color: white;
+background-image: url("data/topimage.jpg");
 }
 
-#map{
+#linkbar{
+position: absolute; 
+top: 140px; 
+left: 2%;
+right: 2%; 
+height: 60px; /*Height of frame div*/
+overflow: hidden; /*Disable scrollbars. Set to "scroll" to enable*/
+background-color: black;
+color: black;
+text-align: center;
+}
+
+ul {
+    list-style-type: none;
+    height: auto;
+    left: 2%;
+    right: 2%;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+    width: 33.3%;
+}
+
+li a {
+    display: block;
+    color: white;
+    padding: 20px;
+    text-decoration: none;
+}
+
+.active {
+background-color:#4CAF50;
+}
+
+a:hover:not(.active) {
+    background-color: #111;
+}
+
+#mapwrapper{
 position: fixed; 
-top: 130px; /*Set top value to HeightOfFrameDiv*/
+top: 200px; /*Set top value to HeightOfFrameDiv*/
 left: 2%;
 right: 2%;
 bottom: 0;
@@ -31,7 +75,7 @@ background: #fff;
 
 #map{
 position: fixed; 
-top: 130px; /*Set top value to HeightOfFrameDiv*/
+top: 200px; /*Set top value to HeightOfFrameDiv*/
 left: 2%;
 width: 70%;
 bottom: 0;
@@ -41,7 +85,7 @@ background: #fff;
 
 #mapinfo{
 position: fixed; 
-top: 130px; /*Set top value to HeightOfFrameDiv*/
+top: 200px; /*Set top value to HeightOfFrameDiv*/
 right: 2%;
 width: 26%;
 float: right;
