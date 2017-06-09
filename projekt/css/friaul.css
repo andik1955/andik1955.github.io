@@ -115,6 +115,7 @@ text-align: justify;
 }
 
 #credits {
+font-size: 10px;
 position: absolute;
 top: 600px;
 left: 2%
