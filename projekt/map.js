@@ -22,6 +22,7 @@ window.onload = function() {
         }).addTo(map);
 		
         
+        //cluster group for alberghi
         var cluster_group = L.markerClusterGroup();
         
         
@@ -39,20 +40,17 @@ window.onload = function() {
             }
 
         }).addTo(cluster_group);
-
+        
+        // add cluster to map
         map.addLayer(cluster_group);
         
         // leaflet-hash aktivieren
-        //var hash = new L.Hash(map);
+        var hash = new L.Hash(map);
 
         
-        // GeoJSON Daten der Friaul Uebersicht einfuegen
+        // GeoJSON Daten der Provinzen einfuegen
         var subregions = L.geoJSON(window.subregion,{
-            filter: function(feature) {
-                if (feature.geometry.type == "Polygon") {
-                    return true
-                };
-            }
+            
         }).bindPopup(function(layer) {
             var allInfo = '<h3>Provinz ' + layer.feature.properties.Name + '</h3>';
             document.getElementById("regname").innerHTML = layer.feature.properties.Name;
@@ -63,6 +61,14 @@ window.onload = function() {
             return allInfo;
         }).addTo(map);
         
+        //Provinz Friaul hinzufuegen
+        var overview = L.geoJSON(window.overview,{
+            style: function (feature) {
+                return {color: 'red'};
+            }
+        });
+        
+        //eigenen Nordpfeil hinzufuegen
         var north = L.control({position: "bottomleft"});
             north.onAdd = function(map) {
             var div = L.DomUtil.create("div", "info legend");
@@ -75,8 +81,9 @@ window.onload = function() {
         var layerControl = L.control.layers({
             "OpenStreetMap": layers.osm},
             {
+            "Region Friaul": overview,
             "Provinzen": subregions,
-            "Gasthof": cluster_group,
+            "Gasthöfe": cluster_group,
 			 }).addTo(map);
              
         map.fitBounds(subregions.getBounds());
