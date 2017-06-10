@@ -17,7 +17,8 @@ window.onload = function() {
         var map = L.map('map', {
             layers: [layers.hikeBike],
             center : [46.15972, 13.011111],
-            zoom : 9
+            zoom : 9,
+            zoomControl: true
         });
 
         // Maßstab hinzufügen
@@ -25,6 +26,14 @@ window.onload = function() {
             maxWidth: 200,
             metric: true,
             imperial: false
+        }).addTo(map);
+        
+        //add fullscreen Button
+        L.control.fullscreen({
+          position: 'topleft', // change the position of the button can be topleft, topright, bottomright or bottomleft, defaut topleft
+          title: 'Vollbildmodus an/aus', // change the title of the button, default Full Screen
+          forceSeparateButton: true, // force seperate button to detach from zoom buttons, default false
+          forcePseudoFullscreen: true, // force use of pseudo full screen even if full screen API is available, default false
         }).addTo(map);
 		
         
