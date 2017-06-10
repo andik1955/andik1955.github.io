@@ -36,6 +36,14 @@ window.onload = function() {
           forcePseudoFullscreen: true, // force use of pseudo full screen even if full screen API is available, default false
         }).addTo(map);
 		
+
+        var sidebar = L.control.sidebar('sidebar', {
+            closeButton: true,
+            position: 'right'
+        });
+
+        map.addControl(sidebar);
+        
         
         //cluster group for alberghi
         var cluster_group = L.markerClusterGroup();
@@ -73,8 +81,27 @@ window.onload = function() {
             document.getElementById("bev").innerHTML = window.provinfo[layer.feature.properties.Name].bevprov;
             document.getElementById("description").innerHTML = window.provinfo[layer.feature.properties.Name].info;
             document.getElementById("info").innerHTML = "";
+            document.getElementById("regname2").innerHTML = layer.feature.properties.Name;
+			document.getElementById("capname2").innerHTML = window.provinfo[layer.feature.properties.Name].capital;
+            document.getElementById("bev2").innerHTML = window.provinfo[layer.feature.properties.Name].bevprov;
+            document.getElementById("description2").innerHTML = window.provinfo[layer.feature.properties.Name].info;
             return allInfo;
-        }).addTo(map);
+        }).addTo(map).on('click', function () {
+            sidebar.show();
+        });
+        
+        
+        map.on('click', function () {
+            sidebar.hide();
+        })
+
+        // detect fullscreen toggling
+		map.on('enterFullscreen', function(){
+			var fs = true
+		});
+		map.on('exitFullscreen', function(){
+			var fs = false
+		});
         
         //Provinz Friaul hinzufuegen
         var overview = L.geoJSON(window.overview,{
