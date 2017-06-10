@@ -70,6 +70,17 @@ window.onload = function() {
         // leaflet-hash aktivieren
         var hash = new L.Hash(map);
 
+        //control for fullscreen mode
+        var fs = false;
+        
+        function myFunc(fs) {
+            if (fs == true) {
+                sidebar.show();
+            }
+            else {
+                sidebar.hide();
+            }
+        };
         
         // GeoJSON Daten der Provinzen einfuegen
         var subregions = L.geoJSON(window.subregion,{
@@ -86,22 +97,26 @@ window.onload = function() {
             document.getElementById("bev2").innerHTML = window.provinfo[layer.feature.properties.Name].bevprov;
             document.getElementById("description2").innerHTML = window.provinfo[layer.feature.properties.Name].info;
             return allInfo;
-        }).addTo(map).on('click', function () {
-            sidebar.show();
-        });
+        }).addTo(map).on('click', function(fs){myFunc(fs);});
         
+        // function () {sidebar.show();}
         
         map.on('click', function () {
             sidebar.hide();
         })
 
-        // detect fullscreen toggling
-		map.on('enterFullscreen', function(){
-			var fs = true
-		});
-		map.on('exitFullscreen', function(){
-			var fs = false
-		});
+        // events are fired when entering or exiting fullscreen.
+        map.on('enterFullscreen', function(){
+          console.log('entered fullscreen');
+          var fs = true;
+          console.log(fs);
+        });
+
+        map.on('exitFullscreen', function(){
+          console.log('exited fullscreen');
+          var fs = false;
+          console.log(fs);
+        });
         
         //Provinz Friaul hinzufuegen
         var overview = L.geoJSON(window.overview,{
