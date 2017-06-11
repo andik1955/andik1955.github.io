@@ -39,7 +39,7 @@ window.onload = function() {
     // add sidebar
     var sidebar = L.control.sidebar('sidebar', {
         closeButton: true,
-        position: 'right'
+        position: 'left'
     });
     
     // add sidebar control
@@ -78,6 +78,7 @@ window.onload = function() {
     map.on('enterFullscreen', function() {
         console.log('entered fullscreen');
         fs = true;
+        map.fitBounds(overview.getBounds());
         //sidebar.show();
         console.log(fs);
     });
@@ -87,6 +88,7 @@ window.onload = function() {
         console.log('exited fullscreen');
         fs = false;
         sidebar.hide();
+        map.fitBounds(overview.getBounds());
         console.log(fs);
     });
 
@@ -161,28 +163,40 @@ window.onload = function() {
     
     
     legend.onAdd = function (map) {
+        
+        var div = L.DomUtil.create('div', 'info legend'),
+                grades = [1, 2, 3],
+                label = "Urbanisierungsgrad";
+            for (var i = 0; i < grades.length; i++) {
+                div.innerHTML +=
+                    '<i style="background:' + getColor(grades[i]) + '"></i> ' +  label  + " " + grades[i] + '<br>' ;
+            }
 
-    var div = L.DomUtil.create('div', 'info legend'),
-            grades = [1, 2, 3],
-            label = "Urbanisierungsgrad";
-
-        // loop through our density intervals and generate a label with a colored square for each interval
-        for (var i = 0; i < grades.length; i++) {
-            div.innerHTML +=
-                '<i style="background:' + getColor(grades[i]) + '"></i> ' +  label  + " " + grades[i] + '<br>' ;
-        }
-
-        return div;
+            return div;
     };
 
-    legend.addTo(map);
+    //legend.addTo(map);
+    
+    // add/remove legend for degree of urbanization
+    map.on('layeradd', function(){
+        if (map.hasLayer(urban) == true) {
+            legend.addTo(map);
+        }
+    });
+    
+    map.on('layerremove', function(){
+        if (map.hasLayer(urban) == false)
+        legend.remove();
+    }
+    );
+    
 
     //eigenen Nordpfeil hinzufuegen
     var north = L.control({
         position: "bottomleft"
     });
     north.onAdd = function(map) {
-        var div = L.DomUtil.create("div", "info legend");
+        var div = L.DomUtil.create("div", "arrow");
         div.innerHTML = '<img width=20 src="icons/northarrow_darkgrey.png">';
         return div;
     }
@@ -199,6 +213,7 @@ window.onload = function() {
         "Gasthöfe": cluster_group,
         "Urbanisierungsgrad": urban,
     }).addTo(map);
+    
 
     map.fitBounds(subregions.getBounds());
 };
