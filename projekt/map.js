@@ -76,7 +76,7 @@ window.onload = function() {
     map.on('enterFullscreen', function() {
         console.log('entered fullscreen');
         fs = true;
-        sidebar.show();
+        //sidebar.show();
         console.log(fs);
     });
 
