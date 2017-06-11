@@ -36,12 +36,13 @@ window.onload = function() {
         forcePseudoFullscreen: true, // force use of pseudo full screen even if full screen API is available, default false
     }).addTo(map);
 
-
+    // add sidebar
     var sidebar = L.control.sidebar('sidebar', {
         closeButton: true,
         position: 'right'
     });
-
+    
+    // add sidebar control
     map.addControl(sidebar);
 
 
@@ -70,6 +71,7 @@ window.onload = function() {
     // leaflet-hash aktivieren
     var hash = new L.Hash(map);
 
+    // variable to control fullscreen-state
     var fs = false;
     
     // events are fired when entering or exiting fullscreen.
@@ -79,7 +81,8 @@ window.onload = function() {
         //sidebar.show();
         console.log(fs);
     });
-
+    
+    // events fired when exiting fullscreen
     map.on('exitFullscreen', function() {
         console.log('exited fullscreen');
         fs = false;
@@ -104,6 +107,7 @@ window.onload = function() {
         return allInfo;
     }).addTo(map);
     
+    // add sidebar according to fullscreen state "fs"
     subregions.on('click',  function() {
             if (fs == true) {
                 sidebar.show();
@@ -114,8 +118,7 @@ window.onload = function() {
         } 
     );
 
-    // function () {sidebar.show();}
-
+    // hide sidebar when clicking outside of subregions/rest of map
     map.on('click', function() {
         sidebar.hide();
     })
@@ -130,6 +133,49 @@ window.onload = function() {
             };
         }
     });
+    
+    // Urbanisierungsgrad hinzufuegen
+    var urban = L.geoJSON(window.urbanization, {
+        style: function(feature) {
+            if (feature.properties.DGURBA_CLA == 3){
+                return { color: 'red' };
+            } else if (feature.properties.DGURBA_CLA == 2) {
+                return { color: 'green' };
+            } else if (feature.properties.DGURBA_CLA == 1) {
+                return { color: 'yellow'};
+            }
+        }
+    });
+    
+    
+    //legend for urbanization
+    var legend = L.control({position: 'bottomright'});
+    
+    function getColor(d) {
+        return d == 3  ? 'red' :
+               d == 2  ? 'green' :
+               d == 1  ? 'yellow' :
+                          '#FFEDA0';
+    }
+        
+    
+    
+    legend.onAdd = function (map) {
+
+    var div = L.DomUtil.create('div', 'info legend'),
+            grades = [1, 2, 3],
+            label = "Urbanisierungsgrad";
+
+        // loop through our density intervals and generate a label with a colored square for each interval
+        for (var i = 0; i < grades.length; i++) {
+            div.innerHTML +=
+                '<i style="background:' + getColor(grades[i]) + '"></i> ' +  label  + " " + grades[i] + '<br>' ;
+        }
+
+        return div;
+    };
+
+    legend.addTo(map);
 
     //eigenen Nordpfeil hinzufuegen
     var north = L.control({
@@ -151,6 +197,7 @@ window.onload = function() {
         "Region Friaul": overview,
         "Provinzen": subregions,
         "Gasthöfe": cluster_group,
+        "Urbanisierungsgrad": urban,
     }).addTo(map);
 
     map.fitBounds(subregions.getBounds());
