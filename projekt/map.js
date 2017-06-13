@@ -51,7 +51,7 @@ window.onload = function() {
 
 
     // alberghi diffusi
-    var punkteSpaziergang = L.geoJSON(window.alberghi, {
+    var alb_dif = L.geoJSON(window.alberghi, {
         pointToLayer: function(feature, latlng) {
             return L.marker(latlng);
         },
@@ -66,7 +66,7 @@ window.onload = function() {
     }).addTo(cluster_group);
 
     // add cluster to map
-    map.addLayer(cluster_group);
+    //map.addLayer(cluster_group);
 
     // leaflet-hash aktivieren
     var hash = new L.Hash(map);
@@ -76,9 +76,14 @@ window.onload = function() {
     
     // events are fired when entering or exiting fullscreen.
     map.on('enterFullscreen', function() {
+        
         console.log('entered fullscreen');
         fs = true;
+        if (map.hasLayer(urban)) {
+            map.fitBounds(overview.getBounds(), {paddingBottomRight: [200,0]});
+        } else {
         map.fitBounds(overview.getBounds());
+        }
         //sidebar.show();
         console.log(fs);
     });
@@ -94,7 +99,7 @@ window.onload = function() {
 
     // GeoJSON Daten der Provinzen einfuegen
     var subregions = L.geoJSON(window.subregion, {
-
+        weight: 1,
     }).bindPopup(function(layer) {
         var allInfo = '<h3>Provinz ' + layer.feature.properties.Name + '</h3>';
         document.getElementById("regname").innerHTML = layer.feature.properties.Name;
@@ -107,7 +112,7 @@ window.onload = function() {
         document.getElementById("bev2").innerHTML = window.provinfo[layer.feature.properties.Name].bevprov;
         document.getElementById("description2").innerHTML = window.provinfo[layer.feature.properties.Name].info;
         return allInfo;
-    }).addTo(map);
+    });
     
     // add sidebar according to fullscreen state "fs"
     subregions.on('click',  function() {
@@ -131,13 +136,20 @@ window.onload = function() {
     var overview = L.geoJSON(window.overview, {
         style: function(feature) {
             return {
-                color: 'red'
+                color: 'grey',
+                weight: 1,
             };
         }
+    }).addTo(map);
+    
+    overview.on('mouseover', function() {
+            overview.bindPopup('Region Friaul')
+            overview.on('mouseover', function() { overview.openPopup(); });
+            overview.on('mouseout', function() { overview.closePopup(); });
     });
     
     // Urbanisierungsgrad hinzufuegen
-    var urban = L.geoJSON(window.urbanization, {
+    var urban = L.geoJSON(window.urbanization, {  weight: 1,
         style: function(feature) {
             if (feature.properties.DGURBA_CLA == 3){
                 return { color: 'red' };
@@ -146,7 +158,8 @@ window.onload = function() {
             } else if (feature.properties.DGURBA_CLA == 1) {
                 return { color: 'yellow'};
             }
-        }
+            }
+           
     });
     
     
@@ -158,10 +171,8 @@ window.onload = function() {
                d == 2  ? 'green' :
                d == 1  ? 'yellow' :
                           '#FFEDA0';
-    }
+    };
         
-    
-    
     legend.onAdd = function (map) {
         
         var div = L.DomUtil.create('div', 'info legend'),
@@ -171,6 +182,7 @@ window.onload = function() {
                 div.innerHTML +=
                     '<i style="background:' + getColor(grades[i]) + '"></i> ' +  label  + " " + grades[i] + '<br>' ;
             }
+            div.innerHTML += '<p class="leg_desc">3/2/1:<br>dünne/mittlere/dichte Besiedelung</p>'
 
             return div;
     };
@@ -181,6 +193,8 @@ window.onload = function() {
     map.on('layeradd', function(){
         if (map.hasLayer(urban) == true) {
             legend.addTo(map);
+            map.fitBounds(overview.getBounds(), {paddingBottomRight: [200,0]} );
+            console.log(legend.getPosition());
         }
     });
     
