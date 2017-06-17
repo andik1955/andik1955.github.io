@@ -132,6 +132,29 @@ window.onload = function() {
         sidebar.hide();
     })
 
+    /*
+    var sublist = [];
+    for(i=0; i <window.subregion.features.length; i++) {
+        sublist[i] = window.subregion.features[i].properties.Name;
+    };
+    
+    map.on('popupclose', function() {
+        pIsOpen = false;
+        console.log(pIsOpen);
+    });
+    
+    
+    map.on('popupopen', function(e) {
+       if(e.popup._source.feature.properties in sublist){
+           console.log('blah');
+           sidebar.show();
+       };
+    });
+    showing sidebar if popup of layer is opened and entering fullscreen
+    */
+    
+    
+
 
 
     //Provinz Friaul hinzufuegen
