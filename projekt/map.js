@@ -223,12 +223,13 @@ window.onload = function() {
         "OpenStreetMap": layers.osm,
         "Hike & Bike": layers.hikeBike,
         
-    }, {
-        "Hillshade": hillshade,
+    },
+    {
         "Region Friaul": overview,
         "Provinzen": subregions,
         "Gasthöfe": cluster_group,
         "Urbanisierungsgrad": urban,
+        "Hillshade": hillshade,        
     }).addTo(map);
     
 
