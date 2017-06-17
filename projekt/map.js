@@ -8,10 +8,12 @@ window.onload = function() {
         hikeBike: L.tileLayer('http://{s}.tiles.wmflabs.org/hikebike/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap Contributors</a> <br> &copy; <a href="http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units">EuroGeographics bezüglich der Verwaltungsgrenzen</a>'
         }),
-        hikeBikeHillshade: L.tileLayer('http://{s}.tiles.wmflabs.org/hillshading/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap Contributors</a> <br> &copy; <a href="http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units">EuroGeographics bezüglich der Verwaltungsgrenzen</a>'
-        }),
     };
+    
+    
+    var hillshade = L.tileLayer('http://{s}.tiles.wmflabs.org/hillshading/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap Contributors</a> <br> &copy; <a href="http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units">EuroGeographics bezüglich der Verwaltungsgrenzen</a>'
+    });
 
     // Karte definieren
     var map = L.map('map', {
@@ -220,8 +222,9 @@ window.onload = function() {
     var layerControl = L.control.layers({
         "OpenStreetMap": layers.osm,
         "Hike & Bike": layers.hikeBike,
-        "Hillshade": layers.hikeBikeHillshade,
+        
     }, {
+        "Hillshade": hillshade,
         "Region Friaul": overview,
         "Provinzen": subregions,
         "Gasthöfe": cluster_group,
