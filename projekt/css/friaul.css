@@ -5,9 +5,6 @@ body {
     overflow: hidden;
     overflow-y: auto;
     overflow-x: hidden;
-    /*height: 100%;  
-max-height: 100%; */
-    
     background-color: #D3D3D3;
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -18,8 +15,6 @@ max-height: 100%; */
     left: 2%;
     right: 2%;
     height: 140px;
-    /*Height of frame div*/
-    
     background-color: #D3D3D3;
 }
 #pic_credits {
@@ -40,11 +35,7 @@ max-height: 100%; */
     left: 2%;
     right: 2%;
     height: 60px;
-    /*Height of frame div*/
-    
     overflow: hidden;
-    /*Disable scrollbars. Set to "scroll" to enable*/
-    
     background-color: #333;
     color: #333;
     text-align: center;
@@ -79,8 +70,6 @@ a:hover:not(.active) {
 #mapwrapper {
     position: absolute;
     top: 200px;
-    /*Set top value to HeightOfFrameDiv  400px   */
-    
     left: 2%;
     right: 2%;
     bottom: 0;
@@ -89,9 +78,7 @@ a:hover:not(.active) {
 }
 #map {
     position: absolute;
-    top: 0px;
-    /*Set top value to HeightOfFrameDiv*/
-    
+    top: 0;
     width: 60%;
     height: 100%;
     float: left;
