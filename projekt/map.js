@@ -9,10 +9,10 @@ window.onload = function() {
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap Contributors</a> <br> &copy; <a href="http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units">EuroGeographics bezüglich der Verwaltungsgrenzen</a>'
         }),
     };
-    
-    
+
+
     var hillshade = L.tileLayer('http://{s}.tiles.wmflabs.org/hillshading/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap Contributors</a> <br> &copy; <a href="http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units">EuroGeographics bezüglich der Verwaltungsgrenzen</a>'
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap Contributors</a> <br> &copy; <a href="http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units">EuroGeographics bezüglich der Verwaltungsgrenzen</a>'
     });
 
     // Karte definieren
@@ -43,7 +43,7 @@ window.onload = function() {
         closeButton: true,
         position: 'left'
     });
-    
+
     // add sidebar control
     map.addControl(sidebar);
 
@@ -64,7 +64,6 @@ window.onload = function() {
             layer.bindPopup(allInfo);
             return allInfo;
         }
-
     }).addTo(cluster_group);
 
     // add cluster to map
@@ -75,21 +74,22 @@ window.onload = function() {
 
     // variable to control fullscreen-state
     var fs = false;
-    
+
     // events are fired when entering or exiting fullscreen.
     map.on('enterFullscreen', function() {
-        
         console.log('entered fullscreen');
         fs = true;
         if (map.hasLayer(urban)) {
-            map.fitBounds(overview.getBounds(), {paddingBottomRight: [200,0]});
+            map.fitBounds(overview.getBounds(), {
+                paddingBottomRight: [200, 0]
+            });
         } else {
-        map.fitBounds(overview.getBounds());
+            map.fitBounds(overview.getBounds());
         }
         //sidebar.show();
         console.log(fs);
     });
-    
+
     // events fired when exiting fullscreen
     map.on('exitFullscreen', function() {
         console.log('exited fullscreen');
@@ -115,17 +115,15 @@ window.onload = function() {
         document.getElementById("description2").innerHTML = window.provinfo[layer.feature.properties.Name].info;
         return allInfo;
     });
-    
+
     // add sidebar according to fullscreen state "fs"
-    subregions.on('click',  function() {
-            if (fs == true) {
-                sidebar.show();
-            } else {
-                sidebar.hide();
-            }
-            
-        } 
-    );
+    subregions.on('click', function() {
+        if (fs == true) {
+            sidebar.show();
+        } else {
+            sidebar.hide();
+        }
+    });
 
     // hide sidebar when clicking outside of subregions/rest of map
     map.on('click', function() {
@@ -152,9 +150,6 @@ window.onload = function() {
     });
     showing sidebar if popup of layer is opened and entering fullscreen
     */
-    
-    
-
 
 
     //Provinz Friaul hinzufuegen
@@ -166,69 +161,81 @@ window.onload = function() {
             };
         }
     }).addTo(map);
-    
-    overview.on('mouseover', function() {
-            overview.bindPopup('Region Friaul')
-            overview.on('mouseover', function() { overview.openPopup(); });
-            overview.on('mouseout', function() { overview.closePopup(); });
-    });
-    
-    // Urbanisierungsgrad hinzufuegen
-    var urban = L.geoJSON(window.urbanization, {  weight: 1,
-        style: function(feature) {
-            if (feature.properties.DGURBA_CLA == 3){
-                return { color: 'red' };
-            } else if (feature.properties.DGURBA_CLA == 2) {
-                return { color: 'green' };
-            } else if (feature.properties.DGURBA_CLA == 1) {
-                return { color: 'yellow'};
-            }
-            }
-           
-    });
-    
-    
-    //legend for urbanization
-    var legend = L.control({position: 'bottomright'});
-    
-    function getColor(d) {
-        return d == 3  ? 'red' :
-               d == 2  ? 'green' :
-               d == 1  ? 'yellow' :
-                          '#FFEDA0';
-    };
-        
-    legend.onAdd = function (map) {
-        
-        var div = L.DomUtil.create('div', 'info legend'),
-                grades = [1, 2, 3],
-                label = "Urbanisierungsgrad";
-            for (var i = 0; i < grades.length; i++) {
-                div.innerHTML +=
-                    '<i style="background:' + getColor(grades[i]) + '"></i> ' +  label  + " " + grades[i] + '<br>' ;
-            }
-            div.innerHTML += '<p class="leg_desc">3/2/1:<br>dünne/mittlere/dichte Besiedelung</p>'
 
-            return div;
+    overview.on('mouseover', function() {
+        overview.bindPopup('Region Friaul')
+        overview.on('mouseover', function() {
+            overview.openPopup();
+        });
+        overview.on('mouseout', function() {
+            overview.closePopup();
+        });
+    });
+
+    // Urbanisierungsgrad hinzufuegen
+    var urban = L.geoJSON(window.urbanization, {
+        weight: 1,
+        style: function(feature) {
+            if (feature.properties.DGURBA_CLA == 3) {
+                return {
+                    color: 'red'
+                };
+            } else if (feature.properties.DGURBA_CLA == 2) {
+                return {
+                    color: 'green'
+                };
+            } else if (feature.properties.DGURBA_CLA == 1) {
+                return {
+                    color: 'yellow'
+                };
+            }
+        }
+
+    });
+
+
+    //legend for urbanization
+    var legend = L.control({
+        position: 'bottomright'
+    });
+
+    function getColor(d) {
+        return d == 3 ? 'red' :
+            d == 2 ? 'green' :
+            d == 1 ? 'yellow' :
+            '#FFEDA0';
+    };
+
+    legend.onAdd = function(map) {
+        var div = L.DomUtil.create('div', 'info legend'),
+            grades = [1, 2, 3],
+            label = "Urbanisierungsgrad";
+        for (var i = 0; i < grades.length; i++) {
+            div.innerHTML +=
+                '<i style="background:' + getColor(grades[i]) + '"></i> ' + label + " " + grades[i] + '<br>';
+        }
+        div.innerHTML += '<p class="leg_desc">3/2/1:<br>dünne/mittlere/dichte Besiedelung</p>'
+        return div;
     };
 
     //legend.addTo(map);
-    
+
     // add/remove legend for degree of urbanization
-    map.on('layeradd', function(){
+    map.on('layeradd', function() {
         if (map.hasLayer(urban) == true) {
             legend.addTo(map);
-            map.fitBounds(overview.getBounds(), {paddingBottomRight: [200,0]} );
+            map.fitBounds(overview.getBounds(), {
+                paddingBottomRight: [200, 0]
+            });
             console.log(legend.getPosition());
         }
     });
-    
-    map.on('layerremove', function(){
+
+    map.on('layerremove', function() {
         if (map.hasLayer(urban) == false)
-        legend.remove();
-    }
-    );
-    
+            legend.remove();
+    });
+
 
     //eigenen Nordpfeil hinzufuegen
     var north = L.control({
@@ -245,16 +252,14 @@ window.onload = function() {
     var layerControl = L.control.layers({
         "OpenStreetMap": layers.osm,
         "Hike & Bike": layers.hikeBike,
-        
-    },
-    {
+    }, {
         "Region Friaul": overview,
         "Provinzen": subregions,
         "Gasthöfe": cluster_group,
         "Urbanisierungsgrad": urban,
-        "Hillshade": hillshade,        
+        "Hillshade": hillshade,
     }).addTo(map);
-    
+
 
     map.fitBounds(subregions.getBounds());
 };
