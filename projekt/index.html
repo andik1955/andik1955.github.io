@@ -6,26 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
     <title>Friaul Information</title>
-    
+
     <!-- Leaflet framework -->
     <link rel="stylesheet" href="js/leaflet/leaflet.css" />
     <script src="js/leaflet/leaflet.js"></script>
-    
+
     <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
-    
+
     <!-- Plugins -->
     <script src="plugins/leaflet-markercluster/leaflet.markercluster.js"></script>
     <link rel="stylesheet" href="plugins/leaflet-markercluster/MarkerCluster.css" />
     <link rel="stylesheet" href="plugins/leaflet-markercluster/MarkerCluster.Default.css" />
-    
+
     <script src="plugins/leaflet-hash/leaflet-hash.js"></script>
-    
+
     <link rel="stylesheet" href="plugins/leaflet-fullscreen/Control.FullScreen.css" />
     <script src="plugins/leaflet-fullscreen/Control.FullScreen.js"></script>
-    
+
     <link rel="stylesheet" href="plugins/leaflet-sidebar/L.Control.Sidebar.css" />
     <script src="plugins/leaflet-sidebar/L.Control.Sidebar.js"></script>
-    
+
     <!-- CSS-Stylesheet -->
     <link rel="stylesheet" href="css/friaul.css" />
 
@@ -36,122 +36,91 @@
     <script src="data/alberghi.js"></script>
     <script src="data/friaul_urbanization.js"></script>
     <script src="map.js"></script>
-    
+
     <style>
+
     </style>
 </head>
 
 <body>
- 
-        <div style="background-image: url('data/udine.jpg')" id="topcontent">
-        
-        
-            <div id="pic_credits">
-            
-            Photo: Udine by <a href="https://www.flickr.com/photos/stefanjurca/14620785226/">Ștefan Jurcă </a>. <a style="none" href="https://creativecommons.org/licenses/by/2.0/">CC-BY-2.0</a>
-            
-            </div>
 
-            
-            <h1 id="header">Friaul</h1>
-        
+    <div style="background-image: url('data/udine.jpg')" id="topcontent">
+
+        <div id="pic_credits">
+
+            Photo: Udine by <a href="https://www.flickr.com/photos/stefanjurca/14620785226/">Ștefan Jurcă</a>. <a style="none" href="https://creativecommons.org/licenses/by/2.0/">CC-BY-2.0</a>
+
         </div>
-        
-        <div id="linkbar">
-        
-            <ul>
-              <li><a  class="active" href="https://andik1955.github.io/projekt/index.html">Übersicht Friaul</a></li>
-              <li><a href="https://lars727.github.io/projekt/index.html">Wanderwege</a></li>
-              <li><a href="https://linuskn.github.io/projekt/index.html">Radwege</a></li>
-            </ul>
-        
-        </div>
-    
-    
-    
-    
+
+        <h1 id="header">Friaul</h1>
+
+    </div>
+
+    <div id="linkbar">
+
+        <ul>
+            <li><a class="active" href="https://andik1955.github.io/projekt/index.html">Übersicht Friaul</a></li>
+            <li><a href="https://lars727.github.io/projekt/index.html">Wanderwege</a></li>
+            <li><a href="https://linuskn.github.io/projekt/index.html">Radwege</a></li>
+        </ul>
+
+    </div>
+
     <div id="mapwrapper">
-        
+
         <div id="map"></div>
-        
+
         <div id="mapinfo">
-        
+
             <div id="info">Um Informationen anzuzeigen, bitte in die jeweilige Provinz klicken.</div>
-            
+
             <h2>Provinz</h2>
-            
+
             <div id="regname"> - keine Provinz ausgewählt - </div>
-            
+
             <h3>Provinzhauptstadt</h3>
-            
+
             <div id="capname"> - </div>
-            
+
             <h3>Einwohner</h3>
-            
+
             <div id="bev"> - </div>
-            
+
             <h3>Kurzbeschreibung</h3>
-            
+
             <div id="description"> - </div>
-                
+
         </div>
-        
+
     </div>
-    
+
     <div id="credits">
-    
-    
-    Autor: Andreas Kollert <br>
-    
-    Informationen über die Provinzen: Wikipedia, <a style="none" href="https://creativecommons.org/licenses/by-sa/3.0/at/">CC-BY-SA</a> <br>
-    
-    Provinzgrenzen: <a href="http://ec.europa.eu/eurostat/de/web/gisco/geodata/reference-data/administrative-units-statistical-units/nuts">Eurostat, DE: &copy EuroGeographics bezüglich der Verwaltungsgrenzen</a> <br>
-    
-    Gasthöfe: <a href="https://www.dati.friuliveneziagiulia.it/Turismo/Alberghi-diffusi-mappa/mb52-xc6d">Regione Autonoma Friuli Venezia Giulia - Open Data</a>, <a href="http://www.dati.gov.it/content/italian-open-data-license-v20">Italian Open Data License v2.0</a>
-    
-    <div id="sidebar">
-        <h1>Informationen</h1>
-        
-        <h2>Provinz</h2>
-        
-        <div id="regname2"> - keine Provinz ausgewählt - </div>
-        
-        <h3>Provinzhauptstadt</h3>
-        
-        <div id="capname2"> - </div>
-        
-        <h3>Einwohner</h3>
-        
-        <div id="bev2"> - </div>
-        
-        <h3>Kurzbeschreibung</h3>
-        
-        <div id="description2"> - </div>
-        
-        
-    </div>
 
-    
-    
-    </div>
-    
-    
-    
+        Autor: Andreas Kollert <br> Informationen über die Provinzen: Wikipedia, <a style="none" href="https://creativecommons.org/licenses/by-sa/3.0/at/">CC-BY-SA</a> <br> Provinzgrenzen: <a href="http://ec.europa.eu/eurostat/de/web/gisco/geodata/reference-data/administrative-units-statistical-units/nuts">Eurostat, DE: &copy EuroGeographics bezüglich der Verwaltungsgrenzen</a> <br> Gasthöfe: <a href="https://www.dati.friuliveneziagiulia.it/Turismo/Alberghi-diffusi-mappa/mb52-xc6d">Regione Autonoma Friuli Venezia Giulia - Open Data</a>, <a href="http://www.dati.gov.it/content/italian-open-data-license-v20">Italian Open Data License v2.0</a>
 
-    
+        <div id="sidebar">
+            <h1>Informationen</h1>
+
+            <h2>Provinz</h2>
+
+            <div id="regname2"> - keine Provinz ausgewählt - </div>
+
+            <h3>Provinzhauptstadt</h3>
+
+            <div id="capname2"> - </div>
+
+            <h3>Einwohner</h3>
+
+            <div id="bev2"> - </div>
+
+            <h3>Kurzbeschreibung</h3>
+
+            <div id="description2"> - </div>
+
+        </div>
+
+    </div>
 
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
