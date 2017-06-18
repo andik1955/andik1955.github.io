@@ -77,7 +77,6 @@ window.onload = function() {
 
     // events are fired when entering or exiting fullscreen.
     map.on('enterFullscreen', function() {
-        console.log('entered fullscreen');
         fs = true;
         if (map.hasLayer(urban)) {
             map.fitBounds(overview.getBounds(), {
@@ -86,17 +85,13 @@ window.onload = function() {
         } else {
             map.fitBounds(overview.getBounds());
         }
-        //sidebar.show();
-        console.log(fs);
     });
 
     // events fired when exiting fullscreen
     map.on('exitFullscreen', function() {
-        console.log('exited fullscreen');
         fs = false;
         sidebar.hide();
         map.fitBounds(overview.getBounds());
-        console.log(fs);
     });
 
     // GeoJSON Daten der Provinzen einfuegen
@@ -204,7 +199,7 @@ window.onload = function() {
             d == 2 ? 'green' :
             d == 1 ? 'yellow' :
             '#FFEDA0';
-    };
+    }
 
     legend.onAdd = function(map) {
         var div = L.DomUtil.create('div', 'info legend'),
@@ -227,7 +222,6 @@ window.onload = function() {
             map.fitBounds(overview.getBounds(), {
                 paddingBottomRight: [200, 0]
             });
-            console.log(legend.getPosition());
         }
     });
 
