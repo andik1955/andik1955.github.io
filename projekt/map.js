@@ -109,7 +109,7 @@ window.onload = function() {
         document.getElementById("bev2").innerHTML = window.provinfo[layer.feature.properties.Name].bevprov;
         document.getElementById("description2").innerHTML = window.provinfo[layer.feature.properties.Name].info;
         return allInfo;
-    });
+    }).addTo(map);
 
     // add sidebar according to fullscreen state "fs"
     subregions.on('click', function() {
@@ -155,7 +155,7 @@ window.onload = function() {
                 weight: 1,
             };
         }
-    }).addTo(map);
+    });
 
     overview.on('mouseover', function() {
         overview.bindPopup('Region Friaul')
